@@ -67,15 +67,6 @@ create a python program with the cryptography library <br>if u cant find a decod
 pip install cryptography 
 ```
 ### hazmat.primitives.ciphers
-**Supported ciphers**
-- AES
-- AES128
-- AES256
-- Camelia (Haponica)
-- ChaCha20
-- TripleDES
-- SM4
-
 No matter the cipher, the pattern is always exactly three steps:
 1. **Define the Cipher:** `Cipher(algorithms.NAME(key), modes.MODE(iv/nonce))`
 2. **Create the Decryptor:** `decryptor = cipher.decryptor()`
