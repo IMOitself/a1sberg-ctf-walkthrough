@@ -1,48 +1,23 @@
 # a1sberg-ctf-walkthrough
 answering challenges in the practice website provided for the upcoming kyokugen ctf 2026
 
-# [useful guide below](#useful-guided)
+# [useful guide below](#useful-guide-d)
 
 ![](screenshot.png)
 
-# guide idk [WIP]
-<details>
-<summary>
-Forensics
-</summary>
+# useful guide :D
 
-* **`dd files`:**
-    ```bash
-    fdisk -l FILENAME.dd
-    ```
+# FORENSICS
 
+<br>
 
-<details>
-    <summary>
-    soon.
-    </summary>
-</details>
-
-</details>
-
-
-<details>
-<summary>
-Crypto
-</summary>
-
+# CRYPTOGRAPHY
 useful links for ciphers:
 - cipher identifier - [https://www.dcode.fr/cipher-identifier](https://www.dcode.fr/cipher-identifier)
 - most ciphers - [https://gchq.github.io/CyberChef/](https://gchq.github.io/CyberChef/)
 - MD5, specifically - [https://crackstation.net/](https://crackstation.net/)
 
-<details>
-    <summary>
-    soon.
-    </summary>
-</details>
-
-</details>
+<br>
 
 # WEB EXPLOIT
 
@@ -60,9 +35,9 @@ press `ctrl+shift+i` to inspect.
 
 <br>
 
-# If the website has...
+## If the website has...
 
-## 1. Input and submit button
+### 1. Input and submit button
 for login, search, or anything that processes input.<br><br>
 **SSTI (server-side template injection)**
 
@@ -98,7 +73,7 @@ for example:
 
 ---
 
-## 2. File upload 'Choose File' button
+### 2. File upload 'Choose File' button
 **SQLi (sql injection)**
 
 create a file and upload it to see if it works with SQLi, name it:
@@ -127,7 +102,7 @@ if it throws an error, good job. u can now try submitting these to execute [SQL]
 ---
 <br>
 
-# Browser console
+## Browser console
 mix and match some codes here like lego idk
 
 ### 1. modifying elements
@@ -218,5 +193,3 @@ async function spam() {
 }
 spam(); // this triggers the function to start
 ```
-
-</details>
