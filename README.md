@@ -9,15 +9,204 @@ answering challenges in the practice website provided for the upcoming kyokugen 
 
 # FORENSICS
 
+## extracting texts from a file
+
+- **strings:** pulls all text out of a file.
+```bash
+strings file.png
+```
+- **strings + grep:** filter a word ex. `A1S{`.
+```bash
+strings file.png | grep "A1S{"
+```
+- **xxd:** view the raw hex dump of a file.
+```bash
+xxd file.bin
+```
+- **xxd:** filter hex of a word ex. `A1S{`
+```bash
+xxd file.bin | grep -i "41 31 53 7b"
+```
+- **exiftool:** view hidden metadata.
+```bash
+exiftool image.jpg
+```
+- **binwalk:** checks if files are hidden inside other files.<br> the `-e` flag extracts them automatically.
+```bash
+binwalk -e image.jpg
+```
+
 <br>
 
 # CRYPTOGRAPHY
 useful links for ciphers:
-- cipher identifier - [https://www.dcode.fr/cipher-identifier](https://www.dcode.fr/cipher-identifier)
-- most ciphers - [https://gchq.github.io/CyberChef/](https://gchq.github.io/CyberChef/)
-- MD5, specifically - [https://crackstation.net/](https://crackstation.net/)
+- identify ciphers - [dcode.fr/cipher-identifier](https://www.dcode.fr/cipher-identifier)
+- decode most ciphers - [CyberChef](https://gchq.github.io/CyberChef/)
+- decode MD5 or SHA, specifically - [crackstation.net](https://crackstation.net/)
 
-<br>
+> **note:** in **cyberchef**, search for the **magic** block. drag it in to automatically identify and decode pasted text.
+
+---
+
+## common ciphers identity
+- `0110011001101100` - **binary**
+- `666c61677b7d` - **hexadecimal / hex** (0-9, a-f)
+- `ZmxhZ3tzZWNyZXR9==` - **base64** (often ends in `=`)
+- `..-. .-.. .- --.` - **morse code**
+- `+++++[>+++++<-]>++.` - **brainfuck**
+- `AABAB BAAAA` - **baconian**
+- `dv wlmg gzop zylfg urtsg xofy` - **atbash**
+- `H6 5@?E E2=< 23@FE 7:89E 4=F3` - **rot47**
+- etc..
+
+---
+
+## Python libraries (pyca.cryptography)
+create a python program with the cryptography library <br>if u cant find a decoder for specific cipher.
+```bash
+pip install cryptography 
+```
+### hazmat.primitives.ciphers
+**Supported ciphers**
+- AES
+- AES128
+- AES256
+- Camelia (Haponica)
+- ChaCha20
+- TripleDES
+- SM4
+
+No matter the cipher, the pattern is always exactly three steps:
+1. **Define the Cipher:** `Cipher(algorithms.NAME(key), modes.MODE(iv/nonce))`
+2. **Create the Decryptor:** `decryptor = cipher.decryptor()`
+3. **Decrypt & Finalize:** `decryptor.update(ciphertext) + decryptor.finalize()`
+---
+
+### **1. AES with CBC Mode**
+CBC mode require an IV and usually require removing padding like PKCS7 after decryption.
+
+```python
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
+
+k = "e30a5b292fdc400a8e942c406a5eab91" # 16-byte key (Hex)
+iv = "00000000000000000000000000000000" # 16-byte IV (Hex)
+c = "your_hex_ciphertext_here"
+
+cipher = Cipher(algorithms.AES(bytes.fromhex(k)), modes.CBC(bytes.fromhex(iv)))
+decryptor = cipher.decryptor()
+
+padded_data = decryptor.update(bytes.fromhex(c)) + decryptor.finalize()
+
+unpadder = padding.PKCS7(128).unpadder() # 128-bit block size for AES
+answer = unpadder.update(padded_data) + unpadder.finalize()
+
+print(answer.decode('utf-8', errors='ignore'))
+```
+
+### **2. ChaCha20**
+Stream ciphers do not use block modes like ECB or CBC, and they do not require padding. They use a nonce instead.
+
+```python
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms
+
+k = "your_32_byte_key_in_hex_here"      # 32-byte key
+nonce = "your_16_byte_nonce_in_hex"     # 16-byte nonce
+c = "your_hex_ciphertext_here"
+
+cipher = Cipher(algorithms.ChaCha20(bytes.fromhex(k), bytes.fromhex(nonce)), mode=None)
+decryptor = cipher.decryptor()
+
+answer = decryptor.update(bytes.fromhex(c)) + decryptor.finalize()
+
+print(answer.decode('utf-8', errors='ignore'))
+```
+
+### **3. Camellia**
+Stream ciphers do not use block modes like ECB or CBC, and they do not require padding. They use a nonce instead.
+
+```python
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+k = "e30a5b292fdc400a8e942c406a5eab91"
+c = "66b6c18775c1db96d9ec22f32d422a876524f917774d17c2d639a59787e53fbd"
+
+cipher = Cipher(algorithms.Camellia(bytes.fromhex(k)), modes.ECB())
+decryptor = cipher.decryptor()
+
+answer = decryptor.update(bytes.fromhex(c)) + decryptor.finalize()
+print(answer.decode('utf-8', errors='ignore'))
+```
+Here are the minimal Python implementations for the remaining ciphers on your list using `cryptography.hazmat.primitives.ciphers`. 
+
+> [!IMPORTANT]
+> All examples below use ECB mode.
+
+### **4. AES / AES128**
+Requires a 16-byte (32 hex characters) key.
+
+```python
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+k = "00112233445566778899aabbccddeeff" # 16-byte key for AES-128
+c = "your_hex_ciphertext_here"
+
+cipher = Cipher(algorithms.AES(bytes.fromhex(k)), modes.ECB())
+decryptor = cipher.decryptor()
+
+answer = decryptor.update(bytes.fromhex(c)) + decryptor.finalize()
+print(answer.decode('utf-8', errors='ignore'))
+```
+
+### **5. AES256**
+Requires a 32-byte (64 hex characters) key.
+
+```python
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+k = "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff" # 32-byte key for AES-256
+c = "your_hex_ciphertext_here"
+
+cipher = Cipher(algorithms.AES(bytes.fromhex(k)), modes.ECB())
+decryptor = cipher.decryptor()
+
+answer = decryptor.update(bytes.fromhex(c)) + decryptor.finalize()
+print(answer.decode('utf-8', errors='ignore'))
+```
+
+### **6. TripleDES (3DES)**
+Requires an 8-byte (DES - 1 key), 16-byte (2-key 3DES), or 24-byte (3-key 3DES) key.
+
+```python
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+k = "0123456789abcdef0123456789abcdef" # 16-byte key for 2-key 3DES
+c = "your_hex_ciphertext_here"
+
+cipher = Cipher(algorithms.TripleDES(bytes.fromhex(k)), modes.ECB())
+decryptor = cipher.decryptor()
+
+answer = decryptor.update(bytes.fromhex(c)) + decryptor.finalize()
+print(answer.decode('utf-8', errors='ignore'))
+```
+
+### **7. SM4**
+The Chinese standard block cipher. Requires a 16-byte (32 hex characters) key.
+
+```python
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+k = "0123456789abcdef0123456789abcdef" # 16-byte key for SM4
+c = "your_hex_ciphertext_here"
+
+cipher = Cipher(algorithms.SM4(bytes.fromhex(k)), modes.ECB())
+decryptor = cipher.decryptor()
+
+answer = decryptor.update(bytes.fromhex(c)) + decryptor.finalize()
+print(answer.decode('utf-8', errors='ignore'))
+```
+
+<br><br>
 
 # WEB EXPLOIT
 
