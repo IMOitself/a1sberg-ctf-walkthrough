@@ -39,7 +39,7 @@ answering challenges in the practice website provided for the upcoming kyokugen 
 ___
 <br><br>
 
-# [useful guides :D](#useful-guide-d)
+# useful guides :D
 
 - [**Forensics**](#forensics)
   - [extracting texts from a file](#extracting-texts-from-a-file)
