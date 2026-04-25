@@ -1,11 +1,64 @@
 # a1sberg-ctf-walkthrough
 answering challenges in the practice website provided for the upcoming kyokugen ctf 2026
 
-# [useful guide below](#useful-guide-d)
+# [useful guides below](#useful-guides-d)
 
 ![](screenshot.png)
 
-# useful guide :D
+## file structure
+
+- 📁 **Crypto**
+  - [ClassicNeverDies](./Crypto/ClassicNeverDies/)
+  - [FaithInFragments](./Crypto/FaithInFragments/)
+  - [Haponicaa](./Crypto/Haponicaa/)
+  - [HashRitualOfTheSevenSeas](./Crypto/HashRitualOfTheSevenSeas/)
+  - [ShatteredBlock](./Crypto/ShatteredBlock/)
+  - [SmallDBigProblem](./Crypto/SmallDBigProblem/)
+  - [SmoothCipher](./Crypto/SmoothCipher/)
+  - [TheFeedbackLoop](./Crypto/TheFeedbackLoop/)
+- 📁 **Forensics**
+  - [GhostInTheSectors](./Forensics/GhostInTheSectors/)
+  - [MatryoshkaNest](./Forensics/MatryoshkaNest/)
+  - [ResonanceOfSecrets](./Forensics/ResonanceOfSecrets/)
+  - [SatellitesHeartbeat](./Forensics/SatellitesHeartbeat/)
+- 📁 **Misc**
+  - [BrokenMirror](./Misc/BrokenMirror/)
+  - [GhostInTheFileSystem](./Misc/GhostInTheFileSystem/)
+- 📁 **Rev**
+  - [AVRAkadAVRa!](./Rev/AVRAkadAVRa!/)
+  - [MarshalLaw](./Rev/MarshalLaw/)
+  - [MyVaultProject](./Rev/MyVaultProject/)
+  - [RemoteRitual](./Rev/RemoteRitual/)
+- 📁 **Web**
+  - [ASCIIFX2](./Web/ASCIIFX2/)
+  - [EchoChamber](./Web/EchoChamber/)
+  - [RiggedOdds](./Web/RiggedOdds/)
+  - [Salted Fate](./Web/Salted%20Fate/)
+  - [TrustTheHeader](./Web/TrustTheHeader/)
+
+___
+<br><br>
+
+# [useful guides :D](#useful-guide-d)
+
+- [**Forensics**](#forensics)
+  - [extracting texts from a file](#extracting-texts-from-a-file)
+- [**Cryptography**](#cryptography)
+  - [useful links for ciphers](#useful-links-for-ciphers)
+  - [common ciphers identity](#common-ciphers-identity)
+  - [Python libraries (pyca.cryptography)](#python-libraries-pycacryptography)
+    - [hazmat.primitives.ciphers](#hazmatprimitivesciphers)
+- [**Web Exploit**](#web-exploit)
+  - [inspect (chrome)](#inspect-chrome)
+  - [If the website has...](#if-the-website-has)
+    - [1. Input and submit button](#1-input-and-submit-button)
+    - [2. File upload 'Choose File' button](#2-file-upload-choose-file-button)
+  - [Browser console](#browser-console)
+    - [1. modifying elements](#1-modifying-elements)
+    - [2. Fetch](#2-fetch)
+    - [3. Looping](#3-looping)
+
+<br>
 
 # FORENSICS
 
@@ -39,7 +92,8 @@ binwalk -e image.jpg
 <br>
 
 # CRYPTOGRAPHY
-useful links for ciphers:
+
+## useful links for ciphers
 - identify ciphers - [dcode.fr/cipher-identifier](https://www.dcode.fr/cipher-identifier)
 - decode most ciphers - [CyberChef](https://gchq.github.io/CyberChef/)
 - decode MD5 or SHA, specifically - [crackstation.net](https://crackstation.net/)
