@@ -9,11 +9,16 @@ answering challenges in the practice website provided for the upcoming kyokugen 
 
 - 📁 **Crypto**
   - [ClassicNeverDies](./Crypto/ClassicNeverDies/)
+  - [Faith in Fragments](./Crypto/Faith%20in%20Fragments/) (xoptech)
   - [FaithInFragments](./Crypto/FaithInFragments/)
+  - [Haponica](./Crypto/Haponica/) (xoptech)
   - [Haponicaa](./Crypto/Haponicaa/)
+  - [Hash Ritual of the 7 Seals](./Crypto/Hash%20Ritual%20of%20the%207%20Seals/)
   - [HashRitualOfTheSevenSeas](./Crypto/HashRitualOfTheSevenSeas/)
+  - [Shattered Block](./Crypto/Shattered%20Block/) (xoptech)
   - [ShatteredBlock](./Crypto/ShatteredBlock/)
   - [SmallDBigProblem](./Crypto/SmallDBigProblem/)
+  - [Smooth Cipher](./Crypto/Smooth%20Cipher/) (xoptech)
   - [SmoothCipher](./Crypto/SmoothCipher/)
   - [TheFeedbackLoop](./Crypto/TheFeedbackLoop/)
 - 📁 **Forensics**
@@ -21,19 +26,27 @@ answering challenges in the practice website provided for the upcoming kyokugen 
   - [MatryoshkaNest](./Forensics/MatryoshkaNest/)
   - [ResonanceOfSecrets](./Forensics/ResonanceOfSecrets/)
   - [SatellitesHeartbeat](./Forensics/SatellitesHeartbeat/)
+  - [The99PesoNightmare](./Forensics/The99PesoNightmare/)
+- 📁 **Hardware**
+  - [The Ghost in the Silicon](./Hardware/The%20Ghost%20in%20the%20Silicon/) (xoptech)
+  - [TheGhostInTheSilicon](./Hardware/TheGhostInTheSilicon/)
 - 📁 **Misc**
   - [BrokenMirror](./Misc/BrokenMirror/)
   - [GhostInTheFileSystem](./Misc/GhostInTheFileSystem/)
+  - [HiddenTransmission](./Misc/HiddenTransmission/)
+  - [MiaKhalifax](./Misc/MiaKhalifax/)
 - 📁 **Rev**
   - [AVRAkadAVRa!](./Rev/AVRAkadAVRa!/)
   - [MarshalLaw](./Rev/MarshalLaw/)
   - [MyVaultProject](./Rev/MyVaultProject/)
+  - [PeekTheNet](./Rev/PeekTheNet/)
   - [RemoteRitual](./Rev/RemoteRitual/)
 - 📁 **Web**
+  - [AsciiFX](./Web/AsciiFX/) (xoptech)
   - [ASCIIFX2](./Web/ASCIIFX2/)
   - [EchoChamber](./Web/EchoChamber/)
   - [RiggedOdds](./Web/RiggedOdds/)
-  - [Salted Fate](./Web/Salted%20Fate/)
+  - [Salted Fate](./Web/Salted%20Fate/) (xoptech)
   - [TrustTheHeader](./Web/TrustTheHeader/)
 
 ___
