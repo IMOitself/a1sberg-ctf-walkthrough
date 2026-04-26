@@ -39,9 +39,14 @@ Content-Type: application/octet-stream
 
 [DJ_APP_BINARY_DATA]
 ```
-8. maybe it result into this idk. 
+8. we combine every header i.e `X-Session-ID`, `X-App-Auth` and `Server-Token` because i notice it ends in `=` which is base 64.<br>except debug_info because it kinda looks different it has its own `=` at the end.
 ```
 UfMmILf40ANQcXfGSljmgFriMh+K+YsObBUEsFFYiYVW4VkEsfqCRHljDOdTWuLFTZZYRpz49QRRbwDtY3PmgE7NBE0=
 
 AKdgdNLLu3Q0J06BBx6w9Q==
+```
+
+9. i tried aes and rc4 ciphers it doesnt work. but xor does work so..
+```
+python xor_test.py
 ```
