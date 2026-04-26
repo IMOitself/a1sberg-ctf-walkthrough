@@ -27,6 +27,7 @@ answering challenges in the practice website provided for the upcoming kyokugen 
   - [ResonanceOfSecrets](./Forensics/ResonanceOfSecrets/)
   - [SatellitesHeartbeat](./Forensics/SatellitesHeartbeat/)
   - [The99PesoNightmare](./Forensics/The99PesoNightmare/)
+  - [TheCulturalResearchIncident](./Forensics/TheCulturalResearchIncident/)
 - 📁 **Hardware**
   - [The Ghost in the Silicon](./Hardware/The%20Ghost%20in%20the%20Silicon/) (xoptech)
   - [TheGhostInTheSilicon](./Hardware/TheGhostInTheSilicon/)
