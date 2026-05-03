@@ -42,32 +42,77 @@ print(freqs)
 
 Since we know the flag format is `A1S{}`, the first four tones must be `A`, `1`, `S`, `{`. Using those as reference points, we can figure out the formula.
 
-We know `A = 65` maps to `1034 Hz` and `1 = 49` maps to `746 Hz`. Assuming the relationship is linear (`freq = a × ASCII + b`), we solve:
-
+We assume the relationship between frequency and ASCII value is **linear**, meaning it follows the formula:
+ 
 ```
-1034 - 746 = a × (65 - 49)
+frequency = (a × ASCII) + b
+```
+ 
+where `a` and `b` are unknown constants we need to find.
+ 
+We have two known pairs from the flag format `A1S{}`:
+ 
+- `A` has ASCII value `65` and plays at `1034 Hz`
+- `1` has ASCII value `49` and plays at `746 Hz`
+So we can write two equations by substituting these values into the formula:
+ 
+```
+1034 = (a × 65) + b   → equation 1
+746  = (a × 49) + b   → equation 2
+```
+ 
+To find `a`, we eliminate `b` by subtracting equation 2 from equation 1:
+ 
+```
+1034 - 746 = [(a × 65) + b] - [(a × 49) + b]
+288 = (a × 65) + b - (a × 49) - b
+288 = (a × 65) - (a × 49)
+288 = a × (65 - 49)
 288 = a × 16
+a = 288 ÷ 16
 a = 18
-
-b = 746 - (18 × 49) = -136
+```
+ 
+Now that we know `a = 18`, we substitute it back into equation 2 to find `b`:
+ 
+```
+746 = (18 × 49) + b
+746 = 882 + b
+b = 746 - 882
+b = -136
+```
+ 
+So the full encoding formula is:
+ 
+```
+frequency = (18 × ASCII) - 136
 ```
 
-Flip it around to decode frequency back to ASCII:
-
+To decode, we flip it around to solve for ASCII:
+ 
 ```
+frequency = (18 × ASCII) - 136
+frequency + 136 = 18 × ASCII
 ASCII = (frequency + 136) / 18
 ```
-
-We verified it on `S` and `{` and it matched perfectly, so we applied it to all 36 frequencies:
-
+ 
+We verified it on `S` and `{` and it matched perfectly:
+ 
+```
+(1358 + 136) / 18 = 83  → S ✅
+(2078 + 136) / 18 = 123 → { ✅
+```
+ 
+So we applied it to all 36 frequencies:
+ 
 ```python
 a = (freqs[0] - freqs[1]) / (65 - 49)
 b = freqs[1] - 49 * a
-
+ 
 flag = ''.join(chr(round((f - b) / a)) for f in freqs)
 print(flag)
 ```
-
+ 
 ```
 A1S{REDACTED}
 ```
