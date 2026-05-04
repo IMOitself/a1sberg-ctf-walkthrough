@@ -1,1 +1,0 @@
-wsl -d kali-linux -u root
